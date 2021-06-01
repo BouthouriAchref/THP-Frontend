@@ -1,0 +1,91 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<div class="content-wrapper" style="min-height: 680px;">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>All Places</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
+                        <li class="breadcrumb-item active">All Places</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <div class="container my-2">
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-danger" [hidden]="!hasError">
+                    {{ errorMessage }}
+                </div>
+                <div class="alert alert-success" [hidden]="!success">
+                    {{ errorMessage }}
+                </div>
+            </div>
+            <div class="col">
+                <table class="table table-bordered">
+                    <thead class="bg-dark text-light">
+                        <tr>
+
+                            <th width="20%">Name</th>
+                            <th width="40%">Description</th>
+                            <th>Notice</th>
+                            <th>Category</th>
+                            <th>Attachements</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let p of places">
+
+                            <td>{{ p.Name }}</td>
+                            <td>{{ p.Description.substring(0,100) }}</td>
+                            <td>{{ p.Notice }}</td>
+
+                            <td>{{ p.Category?.Name }}</td>
+                            <td><img [src]="p.Attachement[0].Path" style="width: 67%; border-radius: 5px;" /> </td>
+                            <!-- <td>
+                            <ngb-carousel>
+                                <ng-template ngbSlide>
+                                    <div class="picsum-img-wrapper">
+                                        <div *ngFor='let a of Attachement'>
+                                            <img [src]="a" alt="Random first slide">
+                                        </div>
+                                    </div>
+                                    <div class="carousel-caption">
+                                        <h3>{{p.Name}}</h3>
+                                        <p>{{p.Description}}</p>
+                                    </div>
+                                </ng-template>
+                            </ngb-carousel>
+                        </td> -->
+                            <!-- <td class="image-slider">
+                            <mdb-carousel [isControls]="true" class="carousel slide" [animation]="'slide'">
+                                <mdb-carousel-item>
+                                          <div class="view" *ngFor="let item of Place?.Attachement">
+                                              <img [src]="item.Path">
+                                              <div class="mask rgba-indigo-light waves-light" mdbWavesEffect></div>
+                                            </div>
+                                        </mdb-carousel-item>
+                                    </mdb-carousel>
+                                </td> -->
+                            <td>
+
+                                <button class="btn btn-sm btn-danger" (click)="deletePlace(p._id)"><i
+                                        class="fas fa-trash"></i> Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

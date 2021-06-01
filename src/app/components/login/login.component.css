@@ -1,0 +1,14 @@
+.card-primary.card-outline {
+    border-top: 3px solid red;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #e82a2a;
+    border-color: #e82a2a;
+}
+.btn-primary {
+    color: #fff;
+    background-color: red;
+    border-color: red;
+    box-shadow: none;
+}
