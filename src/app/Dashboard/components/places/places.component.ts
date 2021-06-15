@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { AdminService } from 'src/app/services/admin.service';
   styleUrls: ['./places.component.css']
 })
 export class PlacesComponent implements OnInit {
+  @Input() FilterSearch :any;
   users :any;
   constructor(private admin: AdminService) {
     this.admin.UsersSubjectEvent.subscribe(res =>{
@@ -22,6 +23,10 @@ export class PlacesComponent implements OnInit {
       console.log('___',this.users)
     })
     
+  }
+
+  onValueChanged(value){
+    this.users = value;
   }
 
   deleteUser(id){

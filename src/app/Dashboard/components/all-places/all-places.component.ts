@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PlacesService } from 'src/app/services/places.service';
 
@@ -9,6 +9,7 @@ declare var $: any;
   styleUrls: ['./all-places.component.css']
 })
 export class AllPlacesComponent implements OnInit {
+  @Input() FilterSearch :any;
   products: any[] = [];
   subs: Subscription[] = [];
   errorMessage: string;
@@ -38,5 +39,9 @@ export class AllPlacesComponent implements OnInit {
     this.placeService.deletePlaceById(id).subscribe(async (res) => {
       console.log('___',res)
     })
+  }
+
+  onValueChanged(value){
+    this.places = value;
   }
 }

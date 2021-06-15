@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
     this.loginservice.register(this.credentialsForm.value).subscribe(res =>{
       console.log(this.credentialsForm.value);
       this.loginservice.login(this.credentialsForm.value).subscribe(res => {
-        this.router.navigate(['home']);
+        this.router.navigate(['/home']);
       });
       
     });

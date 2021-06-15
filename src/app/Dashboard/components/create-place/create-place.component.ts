@@ -18,8 +18,11 @@ export class CreatePlaceComponent implements OnInit {
   url = environment.url;
   idPlace: any;
   files: boolean = false;
-  id = '60a7b47464a4c52c20df448d'
+  id = '60b737d64270a1001518f3f4'
   categories: any;
+  hasError = false;
+  success = false;
+  errorMessage: string;
   constructor(private formBuilder: FormBuilder, private placeService: PlacesService) { }
 
   ngOnInit() {
@@ -51,10 +54,17 @@ export class CreatePlaceComponent implements OnInit {
         if(res.msg =="succes"){
         this.onUpload(this.idPlace);
         }
-      })
+        this.errorMessage = 'Place Add Successfully';
+        this.success = true;
+        this.credentialsForm.reset();
 
+      })
+    } else {
+      this.errorMessage = 'Error When Inserting';
+      this.hasError = true;
     }
   }
+
 
   onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];

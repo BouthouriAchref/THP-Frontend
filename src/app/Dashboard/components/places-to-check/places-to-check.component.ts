@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PlacesService } from 'src/app/services/places.service';
 
@@ -8,8 +8,7 @@ import { PlacesService } from 'src/app/services/places.service';
   styleUrls: ['./places-to-check.component.css']
 })
 export class PlacesToCheckComponent implements OnInit {
-  products: any[] = [];
-  subs: Subscription[] = [];
+  @Input() FilterSearch :any;
   errorMessage: string;
   hasError = false;
   success = false;
@@ -43,6 +42,10 @@ export class PlacesToCheckComponent implements OnInit {
     this.placeService.checkPlace(id).subscribe(async (res) => {
       console.log('___',res)
     })
+  }
+
+  onValueChanged(value){
+    this.places = value;
   }
 
   

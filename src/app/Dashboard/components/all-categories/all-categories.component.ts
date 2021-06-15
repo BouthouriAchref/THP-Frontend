@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PlacesService } from 'src/app/services/places.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { PlacesService } from 'src/app/services/places.service';
   styleUrls: ['./all-categories.component.css']
 })
 export class AllCategoriesComponent implements OnInit {
+  @Input() FilterSearch :any;
   categories: any;
   hasError = false;
   success = false;
@@ -35,6 +36,10 @@ export class AllCategoriesComponent implements OnInit {
       //   this.success = true
       // }
     })
+  }
+
+  onValueChanged(value){
+    this.categories = value;
   }
 
 }

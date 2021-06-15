@@ -1,5 +1,5 @@
 <app-sidebar></app-sidebar>
-<app-header></app-header>
+<app-header [Data]="this.users" (onValueChanged)="onValueChanged($event)"></app-header>
 <div class="content-wrapper" style="min-height: 680px;">
     <section class="content-header">
         <div class="container-fluid">
@@ -24,12 +24,14 @@
                 <table class="table table-bordered">
                     <thead class="bg-dark text-light">
                         <tr>
-                            <th>Avatar</th>
-                            <th width="20%">Name</th>
-                            <th width="40%">Email</th>
-                            <th>Birthday</th>
+                            <th width="20%">Avatar</th>
+                            <th>Name</th>
+                            <th width="20%">Email</th>
+                            <th width="10%">Birthday</th>
+                            <th>Gender</th>
+                            <th>Nationalite</th>
                             <th>HasPlaces</th>
-
+                            <th width="10%">CreatedAt</th>
                             <th>Operation</th>
                         </tr>
                     </thead>
@@ -40,22 +42,26 @@
                             <td>{{ u?.fullname }}</td>
                             <td>{{ u?.email }}</td>
                             <td>{{ u?.Birthday }}</td>
+                            <td>{{ u?.Gender }}</td>
+                            <td>{{ u?.Nationalite }}</td>
 
                             <td>
                                 <div *ngFor="let p of u?.Places"> {{ p.Name }} </div>
                             </td>
 
+
                             <!-- <td><img [src]="p.Attachement[0].Path" style="width: 100%;" /> </td> -->
                             <!-- <td class="image-slider">
-                            <mdb-carousel [isControls]="true" class="carousel slide" [animation]="'slide'">
-                                <mdb-carousel-item>
-                                    <div class="view" *ngFor="let item of Place?.Attachement">
-                                        <img [src]="item.Path">
-                                        <div class="mask rgba-indigo-light waves-light" mdbWavesEffect></div>
-                                    </div>
-                                </mdb-carousel-item>
-                            </mdb-carousel>
-                        </td> -->
+                                <mdb-carousel [isControls]="true" class="carousel slide" [animation]="'slide'">
+                                    <mdb-carousel-item>
+                                        <div class="view" *ngFor="let item of Place?.Attachement">
+                                            <img [src]="item.Path">
+                                            <div class="mask rgba-indigo-light waves-light" mdbWavesEffect></div>
+                                        </div>
+                                    </mdb-carousel-item>
+                                </mdb-carousel>
+                            </td> -->
+                            <td>{{u?.CreatedAt.substr(0,10)}}</td>
                             <td>
                                 <button class="btn btn-sm btn-danger" (click)="deleteUser(u?._id)"><i class="fas fa-trash"></i> Delete</button>
                             </td>

@@ -25,7 +25,7 @@ const routes: Routes = [
     path: 'all-categories', component: AllCategoriesComponent, canActivate: [AuthguardService]
   },
   {
-    path: 'places', component: PlacesComponent, canActivate: [AuthguardService]
+    path: 'users', component: PlacesComponent, canActivate: [AuthguardService]
   },
   {
     path: 'place-to-check', component: PlacesToCheckComponent, canActivate: [AuthguardService]

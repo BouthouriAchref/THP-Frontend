@@ -11,6 +11,9 @@ export class AddCategoryComponent implements OnInit {
   credentialsForm: FormGroup;
   idcat: any;
   selectedFile: File = null;
+  hasError = false;
+  success = false;
+  errorMessage: string;
   constructor(private formBuilder: FormBuilder, private placeService: PlacesService) { }
 
   ngOnInit(): void {
@@ -22,30 +25,37 @@ export class AddCategoryComponent implements OnInit {
 
   onFileSelected(event) {
     this.selectedFile = <File>event.target.files[0];
-    console.log('file',this.selectedFile)
+    console.log('file', this.selectedFile)
   }
 
-  AddCategory(){
+  AddCategory() {
     console.log('__', this.credentialsForm.value)
     if (this.credentialsForm.valid) {
       this.placeService.addCategory(this.credentialsForm.value).subscribe(res => {
-        console.log('____',res)
+        console.log('____', res)
         this.idcat = res.category._id
         console.log(res, this.idcat)
         this.onUpload(this.idcat);
-      })
 
+      })
+      this.errorMessage = 'Category Add Successfully';
+      this.success = true;
+      this.credentialsForm.reset();
+    } else {
+      this.errorMessage = 'Error When Inserting';
+      this.hasError = true;
     }
   }
 
+
   onUpload(id) {
     const fb = new FormData();
-      fb.append('image', this.selectedFile)
-      this.placeService.uploadImageCat(id, fb).subscribe(res => {
-        console.log(res)
-      })
-      console.log(fb);
-    }
-    
+    fb.append('image', this.selectedFile)
+    this.placeService.uploadImageCat(id, fb).subscribe(res => {
+      console.log(res)
+    })
+    console.log(fb);
+  }
+
 
 }
